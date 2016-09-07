@@ -1,0 +1,66 @@
+
+body {
+	margin:0px;
+	padding: 0px;
+}
+.row {
+
+  max-width: 1000px;
+  min-width:300px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+
+}
+
+.heading {
+	height: 300px;
+	background-color: grey;
+	margin:0px;
+	padding: 0px;
+}
+
+input {
+
+ width:600px;
+ height: 100px;
+ border:2px solid black;
+ border-radius: 4px;
+ font-size: 50px;
+}
+
+.fixedwidth {
+	height: 240px;
+	padding-top: 50px;
+	padding-left: 160px;
+	
+}
+
+.fa.fa-search{
+	font-size: 50px;
+	border:1px solid grey;
+	border-radius: 4px;
+	padding:20px;
+	display:inline-block;
+	position: relative;
+	margin-left: 10px;
+
+
+}
+
+.result-list li {
+
+	font-size: 30px;
+	list-style: none;
+}
+
+
+.result-list img {
+
+	width:600px;
+}
+
+.search-results{
+	margin-left:150px;
+}
+
