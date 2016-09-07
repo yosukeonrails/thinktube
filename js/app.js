@@ -1,4 +1,3 @@
-
  	$(document).ready(function(){
 
  		searchTerm= 'most popular'
@@ -7,7 +6,9 @@
 			part: 'snippet',
 			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 			q: searchTerm,
-			r:'json'
+			maxResults: '10' ,
+			r:'json',
+
 			};
 	
 	getRequest(searchTerm);
@@ -37,7 +38,10 @@
 			part: 'snippet',
 			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 			q: searchTerm,
-			r:'json'
+			r:'json',
+			maxResults: '10' 
+
+
 			};
 
 		url ='https://www.googleapis.com/youtube/v3/search';
@@ -57,32 +61,39 @@
 
 
 
-		function showResults(results){
+	function showResults(results){
 
-				$('ul.result-list li').remove();
-				$('ul.result-list img').remove();
+		var search_title;
+		var search_thumbnails;
 
+		$('ul.result-list li').remove();
+		$('ul.result-list img').remove();
 
-			$.each(results , function(index, value){
-
-
-					var search_title = value.snippet.title
-					var search_thumbnails= value.snippet.thumbnails.medium.url
-
-					var item= '<img src=' +search_thumbnails +'>' + '<li>'+search_title+'</li>'
+		$.each(results , function(index, value){
 
 
+				search_title = value.snippet.title
+				search_thumbnails= value.snippet.thumbnails.medium.url
+
+				var item= '<img src=' +search_thumbnails +'>' + '<li>'+search_title+'</li>'
 
 				$('ul.result-list').append(item)
 
+		});
 
-			});
-		}
+
+
+				$('ul.result-list').on('click', 'li',function(){
+
+					console.log()
+			})
+
+
+	}
+
 
 
 
 		
 
  	});
-
-		
