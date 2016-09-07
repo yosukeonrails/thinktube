@@ -1,7 +1,3 @@
-	
-	
- 	
-
 
  	$(document).ready(function(){
 
@@ -16,8 +12,6 @@
 	
 	getRequest(searchTerm);
 
-
- 		
 
  	$('form').submit(function(){
 
@@ -48,6 +42,7 @@
 
 		url ='https://www.googleapis.com/youtube/v3/search';
 
+
 			$.getJSON(url, params, function(data){
 			 
 			   myData = data.items
@@ -64,7 +59,9 @@
 
 		function showResults(results){
 
-			
+				$('ul.result-list li').remove();
+				$('ul.result-list img').remove();
+
 
 			$.each(results , function(index, value){
 
@@ -73,6 +70,7 @@
 					var search_thumbnails= value.snippet.thumbnails.medium.url
 
 					var item= '<img src=' +search_thumbnails +'>' + '<li>'+search_title+'</li>'
+
 
 
 				$('ul.result-list').append(item)
@@ -88,7 +86,3 @@
  	});
 
 		
-
-
-
-	
