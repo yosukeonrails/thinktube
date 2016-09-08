@@ -117,7 +117,7 @@ $('form').submit(function(){
 
 			$('.next').click(function(){
 
-
+				 $('html, body').animate({ scrollTop: 0 }, 'slow');
 			
 				$.getJSON(url, params, function(data){
 
