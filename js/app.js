@@ -129,7 +129,7 @@ $('form').submit(function(){
 
 			$('.next').click(function(){
 
-				 $('html, body').animate({ scrollTop: 0 }, 'slow');
+				 $('html, body').animate({ scrollTop: 240 }, 'slow');
 
 
 			
