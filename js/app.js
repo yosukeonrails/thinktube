@@ -1,31 +1,48 @@
- 	$(document).ready(function(){
-
- 		var nextToken;
+$(document).ready(function(){
 
  		searchTerm= 'iu'
 
-		// var params = {
-		// 	part: 'snippet',
-		// 	key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
-		// 	q: searchTerm,
-		// 	maxResults: '10' ,
-		// 	r:'json',
 
-		// 	};
+
+		var params = {
+			part: 'snippet',
+			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
+			q: searchTerm,
+			maxResults: '10' ,
+			r:'json'
+
+			};
 	
 	getRequest(searchTerm);
 
 
+ 	$('form').submit(function(){
 
-	function getRequest(searchTerm){
+
+ 			event.preventDefault();
+
+ 			searchTerm= $('.video-search').val();
+ 		getRequest(searchTerm)
+
+ 	})
+
+ 	$('.fa.fa-search').click(function(){
+ 		searchTerm= $('.video-search').val();
+
+ 		getRequest(searchTerm)
+ 	})
+
+	var myData;
+
+ 		function getRequest(searchTerm){
 
 			var params = {
-
 			part: 'snippet',
 			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 			q: searchTerm,
 			r:'json',
-			maxResults:'10'
+			maxResults: '10' 
+
 
 			};
 
@@ -36,8 +53,6 @@
 			 
 			   myData = data.items
 
-			
-			   console.log(data)
 
 			showResults(myData)
 
@@ -45,28 +60,6 @@
 
 			}
 
-
-
- 	$('form').submit(function(){
-
- 			event.preventDefault();
-
- 			searchTerm= $('.video-search').val();
- 		getRequest(searchTerm)
-
- 	})
-
- 	$('.fa.fa-search').click(function(){
-
- 		searchTerm= $('.video-search').val();
-
- 		getRequest(searchTerm)
- 	})
-
-		var myData;
-
-
- 		
 
 
 	function showResults(results){
@@ -90,17 +83,16 @@
 				kind_channel='channel/'+value.id.channelId
 				kind_playlist='playlist?list='+value.id.playlistId
 
-				if (value.id.videoId){ console.log('this is video')
+				if (value.id.videoId){
 
 					     search_link=kind_video
 
 					}
-
-					else if (value.id.channelId){ console.log('this is channel')
+					else if (value.id.channelId){ 
 
 				   search_link= kind_channel 
 			}
-						else if (value.id.playlistId){console.log('this is playlist ')
+						else if (value.id.playlistId){
 
 							search_link= kind_playlist
 					}
@@ -120,23 +112,15 @@
 				$('ul.result-list').append(item)
 
 				
-				console.log(search_url)
+				
 
 
 
 				});
 
+
+
 			}
-
-				// var nextToken= data.nextPageToken
-
-			$('.next').click(function(){
-
-				  
-
-			})
-
-
 
 
 
