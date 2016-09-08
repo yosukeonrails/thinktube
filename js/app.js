@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+
+	$(".heading").click(function(){
+		 location.reload();
+	})
+
  		searchTerm = 'iu'
  		var nextToken;
  		var previousToken;
