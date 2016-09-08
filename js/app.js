@@ -2,6 +2,7 @@ $(document).ready(function(){
 
  		searchTerm = 'iu'
  		var nextToken;
+ 		var previousToken;
 
 		 var params = {
 			part: 'snippet',
@@ -115,6 +116,7 @@ $('form').submit(function(){
 				$.getJSON(url, params, function(data){
 
 						 nextToken = data.nextPageToken
+
 						 console.log(nextToken)
 
 							 params = {
@@ -133,17 +135,52 @@ $('form').submit(function(){
 
 							showResults(myData)
 
+							console.log(myData)
+
 						 })
 
 				})
 
 
+			})	
 
-				
 
+
+
+			$('.previous').click(function(){
+
+		
+				$.getJSON(url, params, function(data){
+
+						 previousToken = data.prevPageToken
+
+						 	console.log(data)
+
+							 params = {
+						part: 'snippet',
+						key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
+						q: searchTerm,
+						maxResults: '10' ,
+						r:'json',
+						pageToken: previousToken
+
+								}
+
+
+
+						 $.getJSON(url, params, function(data){
+
+						 	myData=data.items
+
+							showResults(myData)
+
+						 })
+
+				})
 
 
 			})	
+
 
 
 
