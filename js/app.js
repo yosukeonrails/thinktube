@@ -13,7 +13,7 @@ $(document).ready(function(){
 			part: 'snippet',
 			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 			q: searchTerm,
-			maxResults: '10' ,
+			maxResults: '12' ,
 			r:'json'
 
 			};
@@ -30,7 +30,7 @@ $(document).ready(function(){
 			part: 'snippet',
 			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 			q: searchTerm,
-			maxResults: '10' ,
+			maxResults: '12' ,
 			r:'json'
 
 			};
@@ -74,6 +74,7 @@ $('form').submit(function(){
 
 				$('ul.result-list li').remove();
 				$('ul.result-list img').remove();
+				$('.col-4').remove();
 
 				$.each(results , function(index, value){
 
@@ -105,7 +106,7 @@ $('form').submit(function(){
 
 					search_url='https://www.youtube.com/'+search_link
 
-				var item= '<a href='+ search_url +'><img src=' +search_thumbnails +'>' + '<li>'+search_title+'</li></a>'
+				var item= '<div class="col-4">'+'<a href='+ search_url +'><img src=' +search_thumbnails +'>' + '<div class="text-box"><li>'+search_title+'</li></div></a></div>'
 
 				$('ul.result-list').append(item)
 
@@ -128,7 +129,7 @@ $('form').submit(function(){
 						part: 'snippet',
 						key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 						q: searchTerm,
-						maxResults: '10' ,
+						maxResults: '12' ,
 						r:'json',
 						pageToken:nextToken
 
@@ -179,7 +180,7 @@ $('form').submit(function(){
 						part: 'snippet',
 						key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 						q: searchTerm,
-						maxResults: '10' ,
+						maxResults: '12' ,
 						r:'json',
 						pageToken: previousToken
 
