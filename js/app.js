@@ -5,7 +5,7 @@ $(document).ready(function(){
 		 location.reload();
 	})
 
- 		searchTerm = 'iu'
+ 		searchTerm = ''
  		var nextToken;
  		var previousToken;
 
@@ -60,7 +60,6 @@ $('form').submit(function(){
 
  	$('.fa.fa-search').click(function(){
  		searchTerm= $('.video-search').val();
-
  		getRequest(searchTerm)
  	})
 
