@@ -1,6 +1,6 @@
  	$(document).ready(function(){
 
- 		searchTerm= 'most popular'
+ 		searchTerm= 'iu'
 
 		var params = {
 			part: 'snippet',
@@ -75,21 +75,51 @@
 				search_title = value.snippet.title
 				search_thumbnails= value.snippet.thumbnails.medium.url
 
-				var item= '<img src=' +search_thumbnails +'>' + '<li>'+search_title+'</li>'
+
+				var search_link;
+
+				kind_video= 'watch?v='+ value.id.videoId
+				kind_channel='channel/'+value.id.channelId
+				kind_playlist='playlist?list='+value.id.playlistId
+
+				if (value.id.videoId){ console.log('this is video')
+
+					     search_link=kind_video
+
+					}
+					else if (value.id.channelId){ console.log('this is channel')
+
+				   search_link= kind_channel 
+			}
+						else if (value.id.playlistId){console.log('this is playlist ')
+
+							search_link= kind_playlist
+					}
+				
+				
+						search_url='https://www.youtube.com/'+search_link
+
+
+				// if(search_link==value.id.videoId){
+				//     search_url= 'https://www.youtube.com/watch?v='+search_link}
+				// 	else {
+				// 		search_link = value.id.channelId
+				// 		search_url= 'https://www.youtube.com/channel/'+search_link}
+
+				var item= '<a href='+ search_url +'><img src=' +search_thumbnails +'>' + '<li>'+search_title+'</li></a>'
 
 				$('ul.result-list').append(item)
 
-		});
+				
+				console.log(search_url)
 
 
 
-				$('ul.result-list').on('click', 'li',function(){
-
-					console.log()
-			})
+				});
 
 
-	}
+
+			}
 
 
 
