@@ -57,6 +57,7 @@ input {
  margin-bottom: 100px;
  margin-left:90px;
  margin-top: 60px;
+ text-align: center;
 }
 
 /*input::placeholder{
