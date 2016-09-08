@@ -1,10 +1,9 @@
 $(document).ready(function(){
 
- 		searchTerm= 'iu'
+ 		searchTerm = 'iu'
+ 		var nextToken;
 
-
-
-		var params = {
+		 var params = {
 			part: 'snippet',
 			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 			q: searchTerm,
@@ -12,11 +11,38 @@ $(document).ready(function(){
 			r:'json'
 
 			};
-	
-	getRequest(searchTerm);
 
 
- 	$('form').submit(function(){
+	var myData;
+
+	getRequest();
+
+
+ 		function getRequest (){
+
+ 			 params = {
+			part: 'snippet',
+			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
+			q: searchTerm,
+			maxResults: '10' ,
+			r:'json'
+
+			};
+
+		url ='https://www.googleapis.com/youtube/v3/search';
+				
+			$.getJSON( url, params, function(data){
+			 
+			 myData = data.items
+
+			showResults(myData)
+
+			});
+
+			}
+
+
+$('form').submit(function(){
 
 
  			event.preventDefault();
@@ -32,45 +58,19 @@ $(document).ready(function(){
  		getRequest(searchTerm)
  	})
 
-	var myData;
-
- 		function getRequest(searchTerm){
-
-			var params = {
-			part: 'snippet',
-			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
-			q: searchTerm,
-			r:'json',
-			maxResults: '10' 
-
-
-			};
-
-		url ='https://www.googleapis.com/youtube/v3/search';
-
-
-			$.getJSON(url, params, function(data){
-			 
-			   myData = data.items
-
-
-			showResults(myData)
-
-			});
-
-			}
 
 
 
-	function showResults(results){
 
-		var search_title;
-		var search_thumbnails;
+				function showResults(results){
 
-		$('ul.result-list li').remove();
-		$('ul.result-list img').remove();
+				var search_title;
+				var search_thumbnails;
 
-		$.each(results , function(index, value){
+				$('ul.result-list li').remove();
+				$('ul.result-list img').remove();
+
+				$.each(results , function(index, value){
 
 
 				search_title = value.snippet.title
@@ -85,43 +85,65 @@ $(document).ready(function(){
 
 				if (value.id.videoId){
 
-					     search_link=kind_video
+				     search_link=kind_video
 
-					}
-					else if (value.id.channelId){ 
+				}
+				else if (value.id.channelId){ 
 
-				   search_link= kind_channel 
-			}
-						else if (value.id.playlistId){
+				search_link= kind_channel 
+				}
+					else if (value.id.playlistId){
 
-							search_link= kind_playlist
-					}
-				
-				
-						search_url='https://www.youtube.com/'+search_link
+						search_link= kind_playlist
+				}
 
 
-				// if(search_link==value.id.videoId){
-				//     search_url= 'https://www.youtube.com/watch?v='+search_link}
-				// 	else {
-				// 		search_link = value.id.channelId
-				// 		search_url= 'https://www.youtube.com/channel/'+search_link}
+					search_url='https://www.youtube.com/'+search_link
 
 				var item= '<a href='+ search_url +'><img src=' +search_thumbnails +'>' + '<li>'+search_title+'</li></a>'
 
 				$('ul.result-list').append(item)
 
-				
-				
-
-
-
 				});
 
+				}
 
 
-			}
+			$('.next').click(function(){
 
+		
+				$.getJSON(url, params, function(data){
+
+						 nextToken = data.nextPageToken
+						 console.log(nextToken)
+
+							 params = {
+						part: 'snippet',
+						key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
+						q: searchTerm,
+						maxResults: '10' ,
+						r:'json',
+						pageToken:nextToken
+
+								}
+
+						 $.getJSON(url, params, function(data){
+
+						 	myData=data.items
+
+							showResults(myData)
+
+						 })
+
+				})
+
+
+
+				
+
+
+
+			})	
 
 
 
