@@ -112,7 +112,8 @@ $('form').submit(function(){
 
 			$('.next').click(function(){
 
-		
+
+			
 				$.getJSON(url, params, function(data){
 
 						 nextToken = data.nextPageToken
@@ -129,7 +130,19 @@ $('form').submit(function(){
 
 								}
 
+
+						 	console.log(data)
+					
+					 $('.previous').css('color','black')
+
+
+
+
+
+
 						 $.getJSON(url, params, function(data){
+
+
 
 						 	myData=data.items
 
@@ -154,6 +167,8 @@ $('form').submit(function(){
 
 						 previousToken = data.prevPageToken
 
+
+
 						 	console.log(data)
 
 							 params = {
@@ -165,6 +180,12 @@ $('form').submit(function(){
 						pageToken: previousToken
 
 								}
+
+					if(data.prevPageToken=="CAoQAQ"){
+					 $('.previous').css('color','#a6a6a6')
+					  } 
+
+
 
 
 
@@ -183,6 +204,14 @@ $('form').submit(function(){
 
 
 
+
+
+
+
+					
+
+
+		
 
 		
 
