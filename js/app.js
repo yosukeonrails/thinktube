@@ -1,46 +1,31 @@
  	$(document).ready(function(){
 
+ 		var nextToken;
+
  		searchTerm= 'iu'
 
-		var params = {
-			part: 'snippet',
-			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
-			q: searchTerm,
-			maxResults: '10' ,
-			r:'json',
+		// var params = {
+		// 	part: 'snippet',
+		// 	key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
+		// 	q: searchTerm,
+		// 	maxResults: '10' ,
+		// 	r:'json',
 
-			};
+		// 	};
 	
 	getRequest(searchTerm);
 
 
- 	$('form').submit(function(){
 
-
- 			event.preventDefault();
-
- 			searchTerm= $('.video-search').val();
- 		getRequest(searchTerm)
-
- 	})
-
- 	$('.fa.fa-search').click(function(){
- 		searchTerm= $('.video-search').val();
-
- 		getRequest(searchTerm)
- 	})
-
-	var myData;
-
- 		function getRequest(searchTerm){
+	function getRequest(searchTerm){
 
 			var params = {
+
 			part: 'snippet',
 			key: 'AIzaSyBp7g3qq01iUy3TWWek-WKppgmn3V1Jiuk',
 			q: searchTerm,
 			r:'json',
-			maxResults: '10' 
-
+			maxResults:'10'
 
 			};
 
@@ -51,7 +36,8 @@
 			 
 			   myData = data.items
 
-			   console.log(data.items)
+			
+			   console.log(data)
 
 			showResults(myData)
 
@@ -59,6 +45,28 @@
 
 			}
 
+
+
+ 	$('form').submit(function(){
+
+ 			event.preventDefault();
+
+ 			searchTerm= $('.video-search').val();
+ 		getRequest(searchTerm)
+
+ 	})
+
+ 	$('.fa.fa-search').click(function(){
+
+ 		searchTerm= $('.video-search').val();
+
+ 		getRequest(searchTerm)
+ 	})
+
+		var myData;
+
+
+ 		
 
 
 	function showResults(results){
@@ -87,6 +95,7 @@
 					     search_link=kind_video
 
 					}
+
 					else if (value.id.channelId){ console.log('this is channel')
 
 				   search_link= kind_channel 
@@ -117,9 +126,17 @@
 
 				});
 
-
-
 			}
+
+				// var nextToken= data.nextPageToken
+
+			$('.next').click(function(){
+
+				  
+
+			})
+
+
 
 
 
