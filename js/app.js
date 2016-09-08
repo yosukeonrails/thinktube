@@ -72,9 +72,15 @@ $('form').submit(function(){
 				var search_title;
 				var search_thumbnails;
 
+				// $('ul.result-list').fadeOut("slow", function(){
+
 				$('ul.result-list li').remove();
 				$('ul.result-list img').remove();
 				$('.col-4').remove();
+
+				// })
+
+			
 
 				$.each(results , function(index, value){
 
@@ -106,9 +112,15 @@ $('form').submit(function(){
 
 					search_url='https://www.youtube.com/'+search_link
 
-				var item= '<div class="col-4">'+'<a href='+ search_url +'><img src=' +search_thumbnails +'>' + '<div class="text-box"><li>'+search_title+'</li></div></a></div>'
+				var item= '<div class="col-4">'+'<a href='+ search_url +'><img src=' + search_thumbnails +'>' + '<div class="text-box"><li>'+search_title+'</li></div></a></div>'
+
 
 				$('ul.result-list').append(item)
+
+					$('.col-4').fadeIn("slow", function(){
+						
+						$('.col-4').finish().show();
+					})
 
 				});
 
@@ -118,6 +130,8 @@ $('form').submit(function(){
 			$('.next').click(function(){
 
 				 $('html, body').animate({ scrollTop: 0 }, 'slow');
+
+
 			
 				$.getJSON(url, params, function(data){
 

@@ -126,6 +126,7 @@ input {
 	margin-bottom: 50px;
 	margin-right: 20px;
 	max-height: 100%;
+	display: none;
 }
 
 
@@ -223,7 +224,6 @@ input {
 	font-size: 15px;
 	list-style: none;
 	
-
 	
 }
 
